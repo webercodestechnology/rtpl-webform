@@ -42,13 +42,13 @@ const visiterRegister = ({data})=>{
                 const formData = new FormData();
                 Object.keys(payload).forEach((key)=>{console.log(key,payload[key]);formData.append(key,payload[key])});
                 for (let i = 0; i < vLiveImage.length; i++) {
-                    formData.append("vLiveImage", vLiveImage[i][0]);
+                    formData.append("image", vLiveImage[i][0]);
                 }
                 for (let i = 0; i < vPhotoID.length; i++) {
-                    formData.append("vPhotoID", vPhotoID[i][0]);
+                    formData.append("image", vPhotoID[i][0]);
                 }
                 for (let i = 0; i < vVisitorID.length; i++) {
-                    formData.append("vVisitorID", vVisitorID[i][0]);
+                    formData.append("image", vVisitorID[i][0]);
                 }
                 dispatch({type:FORM_SUBMIT_REQUEST});
                 const response = await axios.post("https://backend.riseandgrow.in/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
@@ -118,13 +118,13 @@ const visiterRegister = ({data})=>{
                 const formData = new FormData();
                 Object.keys(payload).forEach((key)=>{console.log(key,payload[key]);formData.append(key,payload[key])});
                 for (let i = 0; i < vLiveImage.length; i++) {
-                    formData.append("vLiveImage", vLiveImage[i][0]);
+                    formData.append("image", vLiveImage[i][0]);
                 }
                 for (let i = 0; i < vPhotoID.length; i++) {
-                    formData.append("vPhotoID", vPhotoID[i][0]);
+                    formData.append("image", vPhotoID[i][0]);
                 }
                 for (let i = 0; i < vVisitorID.length; i++) {
-                    formData.append("vVisitorID", vVisitorID[i][0]);
+                    formData.append("image", vVisitorID[i][0]);
                 }
                 dispatch({type:FORM_SUBMIT_REQUEST});
                 const response = await axios.post("https://backend.riseandgrow.in/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
