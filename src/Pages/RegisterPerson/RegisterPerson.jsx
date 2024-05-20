@@ -1,9 +1,9 @@
 import "./RegisterPerson.css"
 import { useState } from "react";
-// import { useDispatch } from 'react-redux';
 import Preview from "../Preview/Preview";
 
 const RegisterPerson = ()=>{
+    
     const [person,setPerson] = useState([]);
     const [firstName,setFirstName] = useState("");
     const [lastName,setLastName] = useState("");
@@ -77,8 +77,13 @@ const RegisterPerson = ()=>{
         setAadharFile(null)
         setVisitingCard(null)
         setVisitingCardFile(null)
-        setPerson([...person,{firstName, lastName, designation, dob, anniversary, department, photo,photoFile, aadhar, aadharFile, visitingCard, visitingCardFile}])
         setAddMore(false)
+        if(firstName && firstName.length){
+            setPerson([...person,{firstName, lastName, designation, dob, anniversary, department, photo,photoFile, aadhar, aadharFile, visitingCard, visitingCardFile}])
+        }else{
+            setPerson([...person])
+        }
+
     }
 
     const formSubmit = (e)=>{
@@ -95,6 +100,11 @@ const RegisterPerson = ()=>{
         setVisitingCard(null)
         setVisitingCardFile(null)
         setPreview(true);
+        if(firstName && firstName.length){
+            setPerson([...person,{firstName, lastName, designation, dob, anniversary, department, photo,photoFile, aadhar, aadharFile, visitingCard, visitingCardFile}])
+        }else{
+            setPerson([...person])
+        }
     }
 
     return preview?
@@ -197,6 +207,11 @@ const RegisterPerson = ()=>{
                 <label className='label required' htmlFor='visitingCard'>Upload Visiting Card</label>
                 <input className='text-input' id='visitingCard' name='visitingCard' required type='file' value={visitingCard} onChange={inputHandler} />
             </p>
+            { person.length>=1 &&
+            <p className="field">
+                <button className="button mx-auto close-button" onClick={() => setAddMore(false)}>Close</button>
+            </p>
+            }
             <p className='field'>
                 <button className='button mx-auto' type='submit' >Add</button>
             </p>

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import Loader from '../../Components/Buttons/Loader/Loader';
 
-const Preview = ({person,mode})=>{
+const Preview = ({person,mode}) => {
     const dispatch = useDispatch()
     const state = useSelector(state=>state.formData);
     const formSubmit = ()=>{
@@ -58,8 +58,35 @@ const Preview = ({person,mode})=>{
         </div>
     })
     }
-    {mode!=="PREVIEW" && 
+    {mode!=="PREVIEW" &&
     <div className="form">
+        { state.companyName && 
+        (<><h2 className="field text-light">Company Details</h2><p className='field required'>
+                        <label className='label required' htmlFor='companyName'>Company Name</label>
+                        <input className='text-input' id='companyName' name='companyName' required type='text' value={state.companyName} disabled />
+                    </p><p className='field required'>
+                            <label className='label required' htmlFor='companyAddress'>Company Address</label>
+                            <textarea className='text-input' id='companyAddress' name='companyAddress' required type='text' value={state.companyAddress} disabled />
+                        </p><p className='field required half'>
+                            <label className='label' htmlFor='companyContact'>Company Contact</label>
+                            <input className='text-input' id='companyContact' name='companyContact' required type='tel' value={state.companyContact} disabled />
+                        </p><p className='field required half'>
+                            <label className='label' htmlFor='companyEmail'>Company Email</label>
+                            <input className='text-input' id='companyEmail' name='companyEmail' required type='email' value={state.companyEmail} disabled />
+                        </p><p className='field half required'>
+                            <label className='label' htmlFor='companyGST'>Company GST</label>
+                            <input className='text-input' id='companyGST' name='companyGST' required type='text' value={state.companyGST} disabled />
+                        </p><p className='field half required'>
+                            <label className='label' htmlFor='companyIndustry'>Company Industry</label>
+                            <input className='text-input' id='companyIndustry' name='companyIndustry' required type='text' value={state.companyIndustry} disabled />
+                        </p><p className='field half required'>
+                            <label className='label' htmlFor='contactPersonName'>Contact Person Name</label>
+                            <input className='text-input' id='contactPersonName' name='contactPersonName' required type='text' value={state.contactPersonName} disabled />
+                        </p><p className='field half required'>
+                            <label className='label required' htmlFor='purposeOfVisit'>Purpose of Visit</label>
+                            <input className='text-input' id='purposeOfVisit' name='purposeOfVisit' required type='text' value={state.purposeOfVisit} disabled />
+                        </p></>)
+        }
         <p className="field">
             <button className="button mx-auto" onClick={formSubmit} >Submit</button>
         </p>

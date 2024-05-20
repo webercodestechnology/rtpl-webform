@@ -20,6 +20,7 @@ const getVisitorDetails = ({companyGST,visitorPan})=>{
         }
         try
         {
+            // const data = await axios.post("http://localhost:3000/api/visitor/get_visitor_by_company_contact",payload)
             const data = await axios.post("https://backend.riseandgrow.in/api/visitor/get_visitor_by_company_contact",payload)
             dispatch({type:USER_DETAILS_SUCCESS,payload:data.data})
         }

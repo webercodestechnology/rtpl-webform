@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from 'react-toastify'
 import { FORM_SUBMIT_FAIL, FORM_SUBMIT_REQUEST, FORM_SUBMIT_SUCCESS } from "../constants/Constants";
 
-const visiterRegister = ({data})=>{
+const visiterRegister = ({data}) => {
     return async (dispatch)=>{
         try{
             if(data.type==="COMPANY")
@@ -31,26 +31,31 @@ const visiterRegister = ({data})=>{
                     vCompanyAddress:data.companyAddress,
                     vCompanyContact:data.companyContact,
                     vCompanyEmail:data.companyEmail,
-                    vCompanyGST:data.companyGST,
-                    vCompanyIndustry:data.companyIndustry,
                     purposeOfMeeting:data.purposeOfVisit,
                     contactPersonName:data.contactPersonName,
                     visitors:JSON.stringify(visitors),
                     typeOfVisitor : "Company",
+                    vCompanyGST:data.companyGST,
+                    vCompanyIndustry:data.companyIndustry,
                 // }
                 }
                 const formData = new FormData();
-                Object.keys(payload).forEach((key)=>{console.log(key,payload[key]);formData.append(key,payload[key])});
+                Object.keys(payload).forEach((key)=>{
+                    console.log(key,payload[key],typeof payload[key]);
+                    formData.append(key,payload[key])
+                });
                 for (let i = 0; i < vLiveImage.length; i++) {
-                    formData.append("image", vLiveImage[i][0]);
+                    formData.append("vLiveImage", vLiveImage[i][0]);
                 }
                 for (let i = 0; i < vPhotoID.length; i++) {
-                    formData.append("image", vPhotoID[i][0]);
+                    formData.append("vPhotoID", vPhotoID[i][0]);
                 }
                 for (let i = 0; i < vVisitorID.length; i++) {
-                    formData.append("image", vVisitorID[i][0]);
+                    formData.append("vVisitorID", vVisitorID[i][0]);
                 }
                 dispatch({type:FORM_SUBMIT_REQUEST});
+                debugger
+                // const response = await axios.post("http://localhost:3000/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 const response = await axios.post("https://backend.riseandgrow.in/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 if(response)
                 {
@@ -82,7 +87,7 @@ const visiterRegister = ({data})=>{
             }
             else
             {
-                // console.log(data)
+                console.log(data)
                 let visitors = []
                 let vLiveImage = [];
                 let vPhotoID = [];
@@ -104,12 +109,6 @@ const visiterRegister = ({data})=>{
                     vVisitorID.push(value.visitingCardFile);
                 })
                 const payload = {
-                    vCompanyName:data.companyName,
-                    vCompanyAddress:data.companyAddress,
-                    vCompanyContact:data.companyContact,
-                    vCompanyEmail:data.companyEmail,
-                    vCompanyGST:data.companyGST,
-                    vCompanyIndustry:data.companyIndustry,
                     typeOfVisitor: "Individual",
                     purposeOfMeeting: data.purposeOfVisit,
                     contactPersonName: data.contactPersonName,
@@ -118,15 +117,16 @@ const visiterRegister = ({data})=>{
                 const formData = new FormData();
                 Object.keys(payload).forEach((key)=>{console.log(key,payload[key]);formData.append(key,payload[key])});
                 for (let i = 0; i < vLiveImage.length; i++) {
-                    formData.append("image", vLiveImage[i][0]);
+                    formData.append("vLiveImage", vLiveImage[i][0]);
                 }
                 for (let i = 0; i < vPhotoID.length; i++) {
-                    formData.append("image", vPhotoID[i][0]);
+                    formData.append("vPhotoID", vPhotoID[i][0]);
                 }
                 for (let i = 0; i < vVisitorID.length; i++) {
-                    formData.append("image", vVisitorID[i][0]);
+                    formData.append("vVisitorID", vVisitorID[i][0]);
                 }
                 dispatch({type:FORM_SUBMIT_REQUEST});
+                // const response = await axios.post("http://localhost:3000/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 const response = await axios.post("https://backend.riseandgrow.in/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 if(response)
                 {
