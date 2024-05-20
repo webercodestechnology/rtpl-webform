@@ -54,7 +54,6 @@ const visiterRegister = ({data}) => {
                     formData.append("vVisitorID", vVisitorID[i][0]);
                 }
                 dispatch({type:FORM_SUBMIT_REQUEST});
-                debugger
                 // const response = await axios.post("http://localhost:3000/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 const response = await axios.post("https://backend.riseandgrow.in/api/visitor/visitor_request_meeting",formData,{headers: {'Content-Type':`multipart/form-data`,'processData':false}})
                 if(response)
