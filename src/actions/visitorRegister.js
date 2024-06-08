@@ -93,10 +93,10 @@ const visiterRegister = ({data}) => {
                 let vVisitorID = [];
                 data.person.forEach((value)=>{
                     visitors.push({
-                        vPANCard:data.panNo,
-                        vAddress:data.individualAddress,
-                        vContact:data.individualContact,
-                        vMailID:data.individualEmail,
+                        vPANCard:data.companyGST,
+                        vAddress:data.companyAddress,
+                        vContact:data.companyContact,
+                        vMailID:data.companyEmail,
                         vFirstName:value.firstName,
                         vLastName:value.lastName,
                         vDateOfBirth:value.dob,
